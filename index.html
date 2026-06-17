@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=1024, user-scalable=no">
   <title>Devcon India Experience — Mumbai 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
@@ -19,7 +19,7 @@
 
     /* DARK THEME (default) */
     :root,
-    [data-theme="dark"] {
+    [data-theme="light"] {
       --bg: #080808;
       --bg2: #0f0f0f;
       --bg3: #141414;
@@ -1248,7 +1248,13 @@
         font-size: 36px;
       }
     }
-  </style>
+  
+html, body {
+    min-width: 1024px !important;
+    overflow-x: auto !important;
+}
+
+</style>
 </head>
 
 <body>
@@ -1263,9 +1269,7 @@
       <span class="nav-link" data-page="mumbai" onclick="showPage('mumbai')">Mumbai Guide</span>
       <span class="nav-link" data-page="about" onclick="showPage('about')">About</span>
       <span class="nav-link" data-page="contact" onclick="showPage('contact')">Contact</span>
-      <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">
-        <i class="ti ti-sun" id="themeIcon"></i>
-      </button>
+      
       <button class="nav-cta" onclick="showPage('contact')">Book Now</button>
     </div>
   </nav>
@@ -2353,14 +2357,14 @@
       }
     }
 
-    function toggleTheme() {
+    function toggleThemeDisabled() {
       const html = document.documentElement;
       const icon = document.getElementById('themeIcon');
-      if (html.getAttribute('data-theme') === 'dark') {
+      if (html.getAttribute('data-theme') === 'light') {
         html.setAttribute('data-theme', 'light');
         icon.className = 'ti ti-moon';
       } else {
-        html.setAttribute('data-theme', 'dark');
+        html.setAttribute('data-theme', 'light');
         icon.className = 'ti ti-sun';
       }
     }
