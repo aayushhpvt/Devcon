@@ -1038,6 +1038,10 @@
       color: var(--dim);
       letter-spacing: 0.1em;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .footer-link:hover {
@@ -1196,59 +1200,6 @@
       }
     }
 
-    /* RESPONSIVE */
-    @media(max-width:720px) {
-
-      .hero-grid,
-      .contact-grid,
-      .about-grid,
-      .diwali-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pkg-grid,
-      .bento,
-      .culture-cols,
-      .guide-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .bc.s2 {
-        grid-column: span 1;
-      }
-
-      .stat-strip {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      nav {
-        padding: 0 12px;
-      }
-
-      .nav-link {
-        padding: 0 9px;
-        font-size: 9px;
-      }
-
-      .hero {
-        padding: 40px 16px 0;
-      }
-
-      .section,
-      .guide-hero,
-      .pkg-hero,
-      .about-hero,
-      .contact-section,
-      .diwali-section,
-      .slideshow-section {
-        padding: 40px 16px;
-      }
-
-      .hero-h1 {
-        font-size: 36px;
-      }
-    }
-
     /* MENU TOGGLE BUTTON (Hidden on desktop) */
     .menu-toggle {
       display: none;
@@ -1301,10 +1252,26 @@
       gap: 6px;
     }
 
-    /* RESPONSIVE CSS */
+    /* ==========================================================================
+       RESPONSIVE DESIGN & MEDIA QUERIES
+       ========================================================================== */
 
-    /* TABLET & SMALL LAPTOP BREAKPOINT */
-    @media(max-width: 1024px) {
+    /* TABLET LANDSCAPE / SMALL LAPTOP BREAKPOINT (max-width: 1024px) */
+    @media (max-width: 1024px) {
+      .section,
+      .guide-hero,
+      .pkg-hero,
+      .about-hero,
+      .contact-section,
+      .diwali-section,
+      .slideshow-section {
+        padding: 48px 24px;
+      }
+
+      .hero {
+        padding: 60px 24px 0;
+      }
+
       .hero-grid {
         gap: 32px;
       }
@@ -1312,22 +1279,10 @@
       .bento {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .pkg-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .pkg.feat {
-        grid-column: span 2;
-      }
-
-      .culture-cols {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
 
-    /* MOBILE NAVIGATION & INTERMEDIATE BREAKPOINT */
-    @media(max-width: 900px) {
+    /* TABLET PORTRAIT / MOBILE NAVIGATION BREAKPOINT (max-width: 900px) { */
+    @media (max-width: 900px) {
       .menu-toggle {
         display: flex;
       }
@@ -1335,7 +1290,7 @@
       .nav-links {
         position: fixed;
         top: 52px;
-        right: -100%;
+        right: -280px;
         width: 280px;
         height: calc(100vh - 52px);
         background: rgba(15, 15, 15, 0.95);
@@ -1380,49 +1335,49 @@
         background: var(--orange);
       }
 
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-    }
-
-    /* SMARTPHONE BREAKPOINT */
-    @media(max-width: 768px) {
-
+      /* Stack grids that become too squished in 2-3 columns */
+      .hero-grid,
       .contact-grid,
       .about-grid,
-      .diwali-grid {
+      .diwali-grid,
+      .why-grid,
+      .overview-grid,
+      .pkg-grid,
+      .culture-cols {
         grid-template-columns: 1fr;
         gap: 32px;
-      }
-
-      .pkg-grid,
-      .bento,
-      .culture-cols,
-      .guide-grid {
-        grid-template-columns: 1fr;
       }
 
       .pkg.feat {
         grid-column: span 1;
       }
 
-      .bc.s2 {
-        grid-column: span 1;
-      }
-
+      /* Stat strip 2 columns layout with clean borders */
       .stat-strip {
         grid-template-columns: 1fr 1fr;
       }
 
-      nav {
-        padding: 0 16px;
+      .stat-cell {
+        border-right: none;
+        border-bottom: none;
       }
 
-      .hero {
-        padding: 40px 16px 0;
+      .stat-cell:nth-child(1) {
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
       }
 
+      .stat-cell:nth-child(2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat-cell:nth-child(3) {
+        border-right: 1px solid var(--border);
+      }
+    }
+
+    /* SMARTPHONES (max-width: 600px) */
+    @media (max-width: 600px) {
       .section,
       .guide-hero,
       .pkg-hero,
@@ -1433,8 +1388,27 @@
         padding: 40px 16px;
       }
 
+      .hero {
+        padding: 40px 16px 0;
+      }
+
+      .hero-inner {
+        padding-bottom: 40px;
+      }
+
+      /* Stack bento & guide */
+      .bento,
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bc.s2 {
+        grid-column: span 1;
+      }
+
+      /* Typography adjustments */
       .hero-h1 {
-        font-size: clamp(32px, 8vw, 48px);
+        font-size: clamp(32px, 8vw, 44px);
       }
 
       .section-h {
@@ -1442,21 +1416,34 @@
       }
 
       .diwali-h {
-        font-size: 28px;
+        font-size: 26px;
       }
 
-      .why-grid,
-      .overview-grid {
-        grid-template-columns: 1fr;
+      /* Crop the skyline background cleanly instead of making it tiny */
+      .skyline-svg {
+        height: 140px;
+        width: auto;
+        min-width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
       }
 
-      .crypto-grid {
-        grid-template-columns: repeat(3, 1fr);
+      /* Make footer align vertically on mobile */
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 32px 16px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
       }
     }
 
-    /* SMALL MOBILE BREAKPOINT */
-    @media(max-width: 480px) {
+    /* SMALL MOBILE BREAKPOINT (max-width: 400px) */
+    @media (max-width: 400px) {
       .stat-strip {
         grid-template-columns: 1fr;
       }
@@ -1464,6 +1451,7 @@
       .stat-cell {
         border-right: none;
         border-bottom: 1px solid var(--border);
+        padding: 16px 20px;
       }
 
       .stat-cell:last-child {
@@ -2017,64 +2005,6 @@
       </div>
     </div>
 
-    <div class="slideshow-section">
-      <div class="section-tag">// PAST EVENTS</div>
-      <div class="section-h">Glimpses of our previous experiences</div>
-      <p class="section-sub">Take a look at the developer panels, active hackathons, and networking sessions from our
-        past Web3 community events.</p>
-
-      <div class="slideshow-container">
-        <div class="slide fade">
-          <img src="./past_event_1.png" alt="Devcon Panel Discussion">
-          <div class="slide-caption">// DEVCON PANEL DISCUSSION</div>
-        </div>
-        <div class="slide fade">
-          <img src="./past_event_2.png" alt="Global Web3 Hackathon">
-          <div class="slide-caption">// GLOBAL WEB3 HACKATHON</div>
-        </div>
-        <div class="slide fade">
-          <img src="./past_event_3.png" alt="Builder Networking Meetup">
-          <div class="slide-caption">// BUILDER NETWORKING MEETUP</div>
-        </div>
-
-        <!-- Next & Previous buttons -->
-        <a class="slideshow-prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="slideshow-next" onclick="plusSlides(1)">&#10095;</a>
-      </div>
-
-      <div class="dot-container">
-        <span class="slideshow-dot" onclick="currentSlide(1)"></span>
-        <span class="slideshow-dot" onclick="currentSlide(2)"></span>
-        <span class="slideshow-dot" onclick="currentSlide(3)"></span>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-tag">// CRYPTO PAYMENTS</div>
-      <div class="section-h">We're a Web3 team.<br>We accept Web3 payments.</div>
-      <p class="section-sub">Pay in crypto, fiat, or a combination. All payments confirmed on-chain. Invoices available
-        for any currency.</p>
-      <div class="crypto-grid">
-        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
-            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">BTC</span><span
-            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Bitcoin</span></div>
-        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
-            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">ETH</span><span
-            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Ethereum</span></div>
-        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
-            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">USDC</span><span
-            style="font-family:var(--mono);font-size:9px;color:var(--dim);">USD Coin</span></div>
-        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
-            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">SOL</span><span
-            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Solana</span></div>
-        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
-            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">INR/USD</span><span
-            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Fiat</span></div>
-      </div>
-      <div style="margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--dim);">&gt; 50% deposit to confirm.
-        Balance due on arrival. Wallet address shared on booking confirmation.</div>
-    </div>
-
     <div class="pkg-hero" id="packages-section">
       <div class="section-tag">// PACKAGES</div>
       <div class="section-h">Choose your experience tier</div>
@@ -2144,6 +2074,64 @@
           <button class="pkg-cta" onclick="showPage('contact')">// BOOK THIS TIER</button>
         </div>
       </div>
+    </div>
+
+    <div class="slideshow-section">
+      <div class="section-tag">// PAST EVENTS</div>
+      <div class="section-h">Glimpses of our previous experiences</div>
+      <p class="section-sub">Take a look at the developer panels, active hackathons, and networking sessions from our
+        past Web3 community events.</p>
+
+      <div class="slideshow-container">
+        <div class="slide fade">
+          <img src="./past_event_1.png" alt="Devcon Panel Discussion">
+          <div class="slide-caption">// DEVCON PANEL DISCUSSION</div>
+        </div>
+        <div class="slide fade">
+          <img src="./past_event_2.png" alt="Global Web3 Hackathon">
+          <div class="slide-caption">// GLOBAL WEB3 HACKATHON</div>
+        </div>
+        <div class="slide fade">
+          <img src="./past_event_3.png" alt="Builder Networking Meetup">
+          <div class="slide-caption">// BUILDER NETWORKING MEETUP</div>
+        </div>
+
+        <!-- Next & Previous buttons -->
+        <a class="slideshow-prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="slideshow-next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+
+      <div class="dot-container">
+        <span class="slideshow-dot" onclick="currentSlide(1)"></span>
+        <span class="slideshow-dot" onclick="currentSlide(2)"></span>
+        <span class="slideshow-dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-tag">// CRYPTO PAYMENTS</div>
+      <div class="section-h">We're a Web3 team.<br>We accept Web3 payments.</div>
+      <p class="section-sub">Pay in crypto, fiat, or a combination. All payments confirmed on-chain. Invoices available
+        for any currency.</p>
+      <div class="crypto-grid">
+        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
+            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">BTC</span><span
+            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Bitcoin</span></div>
+        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
+            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">ETH</span><span
+            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Ethereum</span></div>
+        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
+            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">USDC</span><span
+            style="font-family:var(--mono);font-size:9px;color:var(--dim);">USD Coin</span></div>
+        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
+            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">SOL</span><span
+            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Solana</span></div>
+        <div style="background:var(--bg2);padding:20px;text-align:center;"><span
+            style="font-family:var(--mono);font-size:18px;color:var(--orange);display:block;margin-bottom:6px;">INR/USD</span><span
+            style="font-family:var(--mono);font-size:9px;color:var(--dim);">Fiat</span></div>
+      </div>
+      <div style="margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--dim);">&gt; 50% deposit to confirm.
+        Balance due on arrival. Wallet address shared on booking confirmation.</div>
     </div>
 
     <div class="section" style="background:var(--bg2);">
@@ -2550,6 +2538,8 @@
       <span class="footer-link" onclick="showPage('mumbai')">Mumbai Guide</span>
       <span class="footer-link" onclick="showPage('about')">About</span>
       <span class="footer-link" onclick="showPage('contact')">Contact</span>
+      <a class="footer-link" href="https://x.com/ongroundxyz" target="_blank" rel="noopener"><i class="ti ti-brand-x"></i> Twitter</a>
+      <a class="footer-link" href="https://www.instagram.com/ongroundxyz" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i> Instagram</a>
     </div>
     <div class="footer-r">BTC · ETH · USDC · SOL ACCEPTED</div>
   </footer>
